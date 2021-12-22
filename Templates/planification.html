@@ -1,0 +1,160 @@
+<!-- saved from url=(0051)file:///E:/Users/Sniperiela/Downloads/reglages.html -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title> Planification de la mission </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
+    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
+    <script type="text/javascript" src="/static/movingMarker.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>Map</title>
+    <style>
+        h2 {
+            color: #498BA7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row" style="height: 100%; flex-wrap: nowrap;">
+            <div class="col-2" style="background-color: #498BA7;margin-left:10px">
+
+                <div class="row" style="height: 15%;">
+                    <div style="width: 100%;padding: 20px;">
+                        <h5 style="text-align: center; color:#ffffff"> Bienvenue Tom !</h5>
+                    </div>
+                </div>
+                <div class="row" style="height: 40%;">
+                    <nav class="navbar navbar-light">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url_for('home')}}" style="color: #191463"> Home </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url_for('planification')}}" style="color: #191463">
+                                    Planification </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url_for('simulation')}}" style="color: #191463"> Simulation
+                                </a>
+                            </li>
+                    </nav>
+                </div>
+
+                <div class="row" style="height: 35%;">
+                    <nav class="navbar navbar-light">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="reglages.html" style="color: #ffffff"> Réglages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="reglages.html" style="color: #ffffff"> Se déconnecter </a>
+                            </li>
+                    </nav>
+                </div>
+
+
+                <div class="row" style="height: 10%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Thales_Logo.svg/2560px-Thales_Logo.svg.png"
+                        alt="Logo Thales"
+                        style="height: 45%;width: 45%;margin-left: auto;margin-right: auto;display: block;" />
+                </div>
+
+            </div>
+            <div class="col-9" style="background-color: #CECECE">
+                <div class="container-fluid"
+                    style="margin-left: 200px !important;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+                    <div class="row" style="margin-left: 60px;">
+                        <h2>Planification mission :</h2>
+                    </div>
+                    <div class="row">
+                        <h1></h1>
+                    </div>
+                    <div class="row">
+                        <h1></h1>
+                    </div>
+                    <div style="display: flex">
+                        <!--
+                            <div class="col-3">
+                            <img src="https://e7.pngegg.com/pngimages/492/286/png-clipart-computer-icons-user-profile-avatar-avatar-heroes-monochrome.png" style="height: 85%;width: 85%;margin-left: auto;margin-right: auto;display: block;">
+                        </div>
+                    -->
+                        <!-- Choix du nombre de drone -->
+                        <div class="col-6">
+                            <form class="form-inline">
+                                <div class="form-group mb-2">
+                                    <label for="nombreDeDrones" class="sr-only"></label>
+                                    <input type="text" readonly class="form-control-plaintext" id="catégorieDrone"
+                                        value="Nombre de drone :">
+                                </div>
+                                <form class="form-inline">
+                                    <select id="inputNumberDrone" class="form-control">
+                                        <option selected>Choix...</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>etc...</option>
+                                    </select>
+                                </form>
+                            </form>
+
+                            <!-- Choix type de drone -->
+                            <form class="form-inline">
+                                <div class="form-group mb-2">
+                                    <label for="catégorieDrone" class="sr-only"></label>
+                                    <input type="text" readonly class="form-control-plaintext" id="catégorieDrone"
+                                        value="Type de drone :">
+                                </div>
+                                <form class="form-inline">
+                                    <select id="inputTypeDrone" class="form-control">
+                                        <option selected>Type du drone...</option>
+                                        <option>Drone 1</option>
+                                        <option>Drone 2</option>
+                                        <option>Drone etc...</option>
+                                    </select>
+                                </form>
+                            </form>
+
+                            <div id="mapid_planification" style="width: 700px; height: 450px;"></div>
+
+                            <div class="row">
+                                <h1></h1>
+                            </div>
+                            <!--Bouton de lancement-->
+                            <div class="text-center">
+                                <button type="submit" id="Animation" class="btn btn-primary mb-2"
+                                    style="background-color:#498BA7" onclick="SendMissionPlane()"><a 
+                                         style="color: #ffffff;">Lancer la
+                                        mission</a></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-1" style="background-color: #CECECE">
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script type="text/javascript" src="/static/thales.js"></script>
+
+</html>
